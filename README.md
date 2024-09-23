@@ -30,7 +30,8 @@ Copy code
 └── setup.py              # If it's a Python package, or other package setup
 2. Directory Breakdown
 /app/
-```
+
+```bash
 Contains the core code of your web service. This could have subdirectories to handle different services or components:
 
 Backend: If you’re building an API service.
@@ -45,7 +46,7 @@ Frontend: If you also have a frontend.
 /views/: Page-level components or templates.
 /assets/: Images, fonts, etc.
 /config/
-
+```
 Holds configuration settings. You can organize files for different environments:
 
 config.yaml or config.js: Configuration values like API keys, database connections, etc.
@@ -74,10 +75,11 @@ Setup: Initial setup scripts, for example, to install dependencies, generate tok
 /tests/
 
 Test cases for your project:
-
+```bash
 /unit/: Unit tests for individual components.
 /integration/: Tests that check how components interact.
 /e2e/: End-to-end tests simulating real-world user interactions.
+```
 Consider adding a testing framework like pytest (Python) or Jest (Node.js).
 
 3. Other Essential Files
@@ -85,13 +87,14 @@ Consider adding a testing framework like pytest (Python) or Jest (Node.js).
 
 Specify which files and directories should not be tracked by Git. For example:
 
-bash
+```bash
 Copy code
 node_modules/
 __pycache__/
 .env
 *.log
 .env and .env.sample
+```
 
 Store sensitive configuration (e.g., API keys, DB credentials) in a .env file, and keep a .env.sample for reference.
 
