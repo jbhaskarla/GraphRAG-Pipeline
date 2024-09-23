@@ -11,6 +11,7 @@ Organizing a GitHub repository for a web service project is essential to ensure 
 This structure separates concerns and keeps your project organized:
 
 bash
+```
 Copy code
 /project-root
 ├── /app/                 # Application code (main services)
@@ -29,7 +30,7 @@ Copy code
 └── setup.py              # If it's a Python package, or other package setup
 2. Directory Breakdown
 /app/
-
+```
 Contains the core code of your web service. This could have subdirectories to handle different services or components:
 
 Backend: If you’re building an API service.
