@@ -10,8 +10,8 @@ Organizing a GitHub repository for a web service project is essential to ensure 
 1. Top-Level Directory Structure
 This structure separates concerns and keeps your project organized:
 
-bash
-```
+
+```bash
 Copy code
 /project-root
 ├── /app/                 # Application code (main services)
