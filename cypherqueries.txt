@@ -1,0 +1,197 @@
+﻿MATCH(n) return labels(n) as node_labels, count(n) as counts
+
+
+
+
+match (p:Phenotype) return p limit 10 - gives knowledge graph with 10 nodes
+
+
+
+
+code: HPO:0000495 ; term: Recurrent corneal erosions
+code: HPO:0005829 ; term: Maldevelopment of radioulnar joint
+code: HPO:0011328 ; term: Abnormality of fontanelles
+code: HPO:0100491 ; term: Abnormality of lower limb joint
+code: HPO:0500117 ; term: Abnormal CSF urate concentration
+code: HPO:0000490 ; term: Enophthalmos
+code: HPO:0410234 ; term: Increased anti-parasite IgE antibody level
+code: HPO:0032021 ; term: Eosinophilic liver infiltration
+code: HPO:0000031 ; term: Epididymitis
+
+
+THIS IS THE CODE, WE WANT THE TERM:
+match (p:Phenotype{code:'HPO:0006881'}) return p.term
+
+
+THIS IS THE TERM, WE WANT THE CODE:
+match (p:Phenotype{term:'Diffuse peripheral demyelination'}) return p.code
+
+
+QUERY QUESTIONS:
+
+
+What is the name of the phenotype for the code HPO:0000495?
+match (p:Phenotype{code:'HPO:0000495'}) return p.term
+Recurrent corneal erosions
+
+
+What is the name of the phenotype for the code HPO:0410234?
+match (p:Phenotype{code:'HPO:0410234'}) return p.term
+Increased anti-parasite IgE antibody level
+
+
+What is the name of the phenotype for the code HPO:0500117?
+match (p:Phenotype{code:'HPO:0500117'}) return p.term
+Abnormal CSF urate concentration
+
+
+What’s the HPO code associated with Enophthalmos?
+match (p:Phenotype{term:'Enophthalmos'}) return p.code
+HPO:0000490
+
+
+What’s the HPO code associated with Eosinophilic liver infiltration?
+match (p:Phenotype{term:'Eosinophilic liver infiltration'}) return p.code
+HPO:0032021
+
+
+MATCH(n) return labels(n) as node_labels, count(n) as counts
+match (p:Disease) return p limit 10
+
+
+code: DOID:7598 ; term: cervical lymphoepithelioma-like carcinoma
+code: DOID:1973 ; term: fallopian tube adenosarcoma
+code: DOID:6511 ; term: glandular pattern ovarian yolk sac tumor
+code: DOID:6613 ; term: vaginal villous adenoma
+code: DOID:11282 ; term: solar retinopathy
+code: DOID:0060186 ; term: chemical colitis
+code: DOID:2123 ; term: tularemia
+code: DOID:2078 ; term: chondroid syringoma of the vulva
+code: DOID:7269 ; term: cribriform variant testicular seminoma
+code: DOID:7302 ; term: endodermal sinus pattern testicular yolk sac tumor
+
+
+QUERIES:
+
+
+What is the disease associated with the code DOID:7598?
+match (p:Disease{code:'DOID:7598'}) return p.term
+cervical lymphoepithelioma-like carcinoma
+
+
+What is the disease associated with the code DOID:2078?
+match (p:Disease{code:'DOID:2078'}) return p.term
+chondroid syringoma of the vulva
+
+
+What code is associated with the Tularemia?
+match (p:Disease{term:'tularemia'}) return p.code
+DOID:2123
+
+
+
+
+SYNONYMOUS CODES AND TERMS
+
+
+find all the synonymous codes for DOID:1973
+match (d:Disease {code:'DOID:1973'}) where d.codes_list is not NULL  return d.codes_list
+
+
+Find all the synonymous codes for DOID:2123?
+
+
+match (d:Disease {code:'DOID:2123'}) where d.codes_list is not NULL  return d.codes_list
+
+
+["ICD9CM:021.8", "EFO:1001444", "DOID:14239", "MONDO:0001916", "MONDO:0018077", "DOID:2123"]
+
+
+Find all the synonymous codes for DOID:11282?
+
+
+match (d:Disease {code:'DOID:11282'}) where d.codes_list is not NULL return d.codes_list
+
+
+["HPO:0031420", "MDR:10041305", "ICPC2ICD10ENG:MTHU083187", "ICPC2ICD10ENG:MTHU064532", "MEDCIN:36493", "SNOMEDCT_US:1135000", "MDR:10038936", "ICD9CM:363.31", "ICD10CM:H31.02", "DOID:11282"]
+
+
+Find all the synonymous codes for HPO:0000495?
+
+
+match (d:Phenotype {code:'HPO:0000495'}) where d.codes_list is not NULL return d.codes_list
+
+
+["HPO:0000495"]
+["OMIM:MTHU024135", "OMIM:MTHU036632", "OMIM:MTHU013569", "HPO:0000495"]
+	
+
+	Find all the synonymous codes for Abnormality of fontanelles?
+
+
+match (d:Phenotype {term:'Abnormality of fontanelles'}) where d.codes_list is not NULL  return d.codes_list
+
+
+["HPO:0011328"]
+
+
+Find all the synonymous codes for chemical colitis?
+
+
+match (d:Disease {term:'chemical colitis'}) where d.codes_list is not NULL return d.codes_list
+
+
+["ICD9CM:558", "MONDO:0000706", "ICD9CM:558.9", "ICD10CM:K52", "DOID:0060187", "MONDO:0000707", "DOID:0060186"]
+
+
+Find all the synonymous codes for Epididymitis?
+
+
+match (d:Phenotype {term:'Epididymitis'}) where d.codes_list is not NULL return d.codes_list
+
+
+["OMIM:MTHU038084", "HPO:0000031"]
+
+
+Find all synonymous terms for the code: DOID:6613?
+
+
+match (d:Disease {code:'DOID:6613'}) where d.terms_list is not NULL return d.terms_list
+
+
+["vaginal villous adenoma", "vagina villous adenoma", "Vaginal Villous Adenoma"]
+
+
+Find all synonymous terms for the code: HPO:0000495?
+
+
+match (d:Phenotype {code:'HPO:0000495'}) where d.terms_list is not NULL return d.terms_list
+
+
+["Epithelial corneal erosions", "Recurrent corneal erosions", "Recurrent corneal ulceration", "Recurrent corneal ulcerations", "Recurrent breakdown of clear protective layer of eye", "Corneal erosions, recurrent"]
+
+
+	Find all the synonymous terms for fallopian tube adenosarcoma?
+
+
+match (d:Disease {term:'fallopian tube adenosarcoma'}) where d.terms_list is not NULL return d.terms_list
+
+
+["Fallopian Tube Mullerian Adenosarcoma", "Fallopian Tube Adenosarcoma", "Fallopian Tube Müllerian Adenosarcoma", "fallopian tube adenosarcoma", "fallopian tube mullerian adenosarcoma", "adenosarcoma of fallopian tube", "fallopian tube müllerian adenosarcoma"]
+
+
+Find all the synonymous terms for chondroid syringoma of the vulva?
+
+
+match (d:Disease {term:'chondroid syringoma of the vulva'}) where d.terms_list is not NULL  return d.terms_list
+
+
+["Chondroid Syringoma of the Vulva", "Vulvar Chondroid Syringoma", "Benign Mixed Tumor of the Vulva", "benign mixed tumor of the vulva", "chondroid syringoma of the vulva"]
+ 
+Find all the synonymous terms for Enophthalmos?
+
+
+match (d:Phenotype {term:'Enophthalmos'}) where d.terms_list is not NULL return d.terms_list
+
+
+["Enophthalmia", "Enophthalmos", "Sunken eye", "Ocular depression", "Deep-set eyes", "Deep set eye", "Sunken eyes", "Deeply set eye"]
